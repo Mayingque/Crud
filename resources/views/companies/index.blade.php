@@ -25,7 +25,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>S.No</th>
+                    <th>No</th>
                     <th>Company Name</th>
                     <th>Company Email</th>
                     <th>Company Address</th>
