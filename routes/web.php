@@ -5,7 +5,7 @@ use App\Http\Controllers\RegAccount;
 
 
 
-Route::get('', [RegAccount::class, 'index']);
+Route::get('companies', [RegAccount::class, 'index']);
 
 
 Route::post('/regaccountRoute', [RegAccount::class, 'regaccount'])->name('regaccount');
