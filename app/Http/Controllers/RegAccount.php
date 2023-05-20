@@ -7,6 +7,10 @@ use App\models\Company;
 
 class RegAccount extends Controller
 {
+    public function index() {
+        $companies = Company::all();
+        return view('companies.index', ['companies' => $companies]);
+    }
     public function regaccount(Request $request) {
         $newaccount = new Company;
         $newaccount->name = $request->name;

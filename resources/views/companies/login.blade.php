@@ -36,9 +36,6 @@
                             </div>
                         </div>
                     </form>
-                    @foreach ($companies as $company)
-                        <p>This is user {{ $company->name }}</p>
-                    @endforeach
             </div>
         </div>
         
