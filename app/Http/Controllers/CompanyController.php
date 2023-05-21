@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
+
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class CompanyController extends Controller
     */
     public function index()
     {
-        $companies = Company::orderBy('id','desc')->paginate(5);
+        $companies = Company::orderBy('id', 'desc')->paginate(5);
         return view('companies.home', compact('companies'));
     }
 
@@ -40,21 +40,21 @@ class CompanyController extends Controller
             'email' => 'required',
             'address' => 'required',
         ]);
-        
+
         Company::create($request->post());
 
-        return redirect()->route('companies.index')->with('success','Company has been created successfully.');
+        return redirect()->route('companies.index')->with('success', 'Company has been created successfully.');
     }
 
     /**
     * Display the specified resource.
     *
-    * @param  \App\company  $company
+    * @param  \App\Company  $company
     * @return \Illuminate\Http\Response
     */
     public function show(Company $company)
     {
-        return view('companies.show',compact('company'));
+        return view('companies.show', compact('company'));
     }
 
     /**
@@ -65,7 +65,7 @@ class CompanyController extends Controller
     */
     public function edit(Company $company)
     {
-        return view('companies.edit',compact('company'));
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -82,10 +82,10 @@ class CompanyController extends Controller
             'email' => 'required',
             'address' => 'required',
         ]);
-        
+
         $company->fill($request->post())->save();
 
-        return redirect()->route('companies.index')->with('success','Company has been updated successfully');
+        return redirect()->route('companies.index')->with('success', 'Company has been updated successfully');
     }
 
     /**
@@ -97,6 +97,24 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect()->route('companies.index')->with('success','Company has been deleted successfully');
+        return redirect()->route('companies.index')->with('success', 'Company has been deleted successfully');
+    }
+
+    /**
+     * Search for companies.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $companies = Company::where('name', 'LIKE', "%$searchTerm%")
+        ->orWhere('email', 'LIKE', "%$searchTerm%")
+        ->orWhere('address', 'LIKE', "%$searchTerm%")
+        ->orderBy('id', 'desc')
+        ->paginate(5);
+
+    return view('companies.home', compact('companies'));
     }
 }

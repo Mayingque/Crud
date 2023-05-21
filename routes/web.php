@@ -13,3 +13,4 @@ Route::get('dashboard', [RegAccount::class, 'dashboard']);
 Route::get('logout', [RegAccount::class, 'logout'])->name('logout');
 
 Route::resource('companies', CompanyController::class);
+Route::get('/search', [CompanyController::class, 'search'])->name('companies.search');
