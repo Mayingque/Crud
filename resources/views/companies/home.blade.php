@@ -1,8 +1,11 @@
+@extends('layout')
+  
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Company Information</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 </head>
 <body>
@@ -10,7 +13,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Register Account</h2>
+                    <h2 style="margin-bottom:20px;"><center>COMPANY INFORMATION</center></h2>
                 </div>
                 <div class="pull-right mb-2">
                     <a class="btn btn-success" href="{{ route('companies.create') }}"> Create Company</a>
@@ -25,7 +28,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>S.No</th>
                     <th>Company Name</th>
                     <th>Company Email</th>
                     <th>Company Address</th>
@@ -55,3 +58,4 @@
     </div>
 </body>
 </html>
+@endsection
