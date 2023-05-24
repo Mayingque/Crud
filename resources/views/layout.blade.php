@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Company Information</title>
+    <title>Company Catalog</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <style type="text/css">
         body{
@@ -12,13 +12,16 @@
             line-height: 1.6;
             color: #212529;
             text-align: left;
+            
         }
         .navbar-laravel
         {
+            background-color: #102363;
             box-shadow: 0 2px 4px rgba(0,0,0,.04);
         }
         .navbar-brand , .nav-link, .my-form, .login-form
         {
+            
             font-family: Raleway, sans-serif;
         }
         .my-form
@@ -54,14 +57,14 @@
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('login') }}" style="color: white">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link" href="{{ route('register') }}" style="color: white">Register</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        <a class="nav-link" href="{{ route('logout') }}" style="color: white">Logout</a>
                     </li>
                 @endguest
             </ul>

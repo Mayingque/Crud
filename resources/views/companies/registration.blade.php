@@ -34,7 +34,7 @@
                           </div>
   
   
-                              <button type="submit" class="btn btn-success" style="width: 70%; margin-bottom: 30px">
+                              <button type="submit" class="btn" style="width: 70%; margin-bottom: 30px; background-color: #3b5998; color: white">
                                   Register
                               </button>
                           
