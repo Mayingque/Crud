@@ -72,11 +72,11 @@
                             </a>
                         </td>
                         <td>
-                            <form action="{{ route('companies.destroy',$company->id) }}" method="POST">
+                            <form id="deleteForm{{$company->id}}" action="{{ route('companies.destroy',$company->id) }}" method="POST">
                                 <a class="btn btn-success" href="{{ route('companies.edit',$company->id) }}"><i class="fas fa-edit"></i></a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{$company->id}}"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -92,7 +92,24 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    <div class="modal fade" id="deleteModal{{$company->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete this company?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" form="deleteForm{{$company->id}}" class="btn btn-danger">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </tbody>
         </table>
         {!! $companies->links() !!}
