@@ -39,12 +39,9 @@ class CompanyController extends Controller
             'name' => 'required',
             'email' => 'required',
             'address' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'owner' => 'required',
         ]);
         $requestData = $request->all();
-        $fileName = time().$request->file('photo')->getClientOriginalName();
-        $path = $request->file('photo')->storeAs('photos', $fileName, 'public');
-        $requestData['photo'] = '/storage/'.$path;
         Company::create($requestData);
         return redirect()->route('companies.index')->with('success', 'Company has been created successfully.');
     }
@@ -84,14 +81,11 @@ class CompanyController extends Controller
             'name' => 'required',
             'email' => 'required',
             'address' => 'required',
+            'owner' => 'required',
         ]);
         $requestData = $request->all();
 
-        if ($request->hasFile('photo')) {
-            $fileName = time().$request->file('photo')->getClientOriginalName();
-            $path = $request->file('photo')->storeAs('photos', $fileName, 'public');
-            $requestData['photo'] = '/storage/'.$path;
-        }
+       
 
         $company->update($requestData);
 
@@ -122,6 +116,7 @@ class CompanyController extends Controller
         $companies = Company::where('name', 'LIKE', "%$searchTerm%")
         ->orWhere('email', 'LIKE', "%$searchTerm%")
         ->orWhere('address', 'LIKE', "%$searchTerm%")
+        ->orWhere('owner', 'LIKE', "%$searchTerm%")
         ->orderBy('id', 'desc')
         ->paginate(5);
 

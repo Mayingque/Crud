@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <style type="text/css">
         body{
-            font-family: Segoe UI;
+            font-family: Arial;
             font-size: 20px;
         }
         
@@ -28,7 +28,7 @@
         </div>
         <div class="row">
             <div class="pull-right mb-2 col-lg-6">
-                <a class="btn" href="{{ route('companies.create') }}" style="background-color: #3b5998; color: white; font-size: 20px;"> <i class="fas fa-plus-circle"></i> Add Company</a>
+                <a class="btn" href="{{ route('companies.create') }}" style="background-color: black; color: white; font-size: 20px;"> <i class="fas fa-plus-circle"></i> Add Company</a>
             </div>
             <div class="col-lg-6">
                 <form action="{{ route('companies.search') }}" method="GET" class="float-right">
@@ -51,9 +51,9 @@
                 <tr>
                     <th>S.No</th>
                     <th>Company Name</th>
+                    <th>Company Owner</th>
                     <th>Company Email</th>
                     <th>Company Address</th>
-                    <th>Company Logo</th>
                     <th width="160px">Action</th>
                 </tr>
             </thead>
@@ -62,15 +62,9 @@
                     <tr>
                         <td>{{ $company->id }}</td>
                         <td>{{ $company->name }}</td>
+                        <td>{{ $company->owner }}</td>
                         <td>{{ $company->email }}</td>
                         <td>{{ $company->address }}</td>
-                        <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$company->id}}">
-                                <div class="d-flex justify-content-center">
-                                    <img src="{{ $company->photo }}" class="rounded-circle" style="width: 50px; height: 50px;">
-                                </div>
-                            </a>
-                        </td>
                         <td>
                             <form id="deleteForm{{$company->id}}" action="{{ route('companies.destroy',$company->id) }}" method="POST">
                                 <a class="btn btn-success" href="{{ route('companies.edit',$company->id) }}"><i class="fas fa-edit"></i></a>
